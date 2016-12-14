@@ -24,6 +24,7 @@ keystone.init({
 	'session': true,
 	'auth': true,
 	'user model': 'Y',
+	'mongo': 'mongodb://admin:admin12345678@ds133418.mlab.com:33418/keystoneplay'
 });
 
 // Load your project's Models
