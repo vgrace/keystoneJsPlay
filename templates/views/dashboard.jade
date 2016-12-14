@@ -1,0 +1,152 @@
+﻿extends ../layouts/default
+
+block content
+	.row
+		.col-lg-12
+			h1.page-header Dashboard
+		// /.col-lg-12
+	// /.row
+	.row
+		.col-lg-3.col-md-6
+			.panel.panel-primary
+				.panel-heading
+					.row
+						.col-xs-3
+							i.fa.fa-bolt.fa-5x
+						.col-xs-9.text-right
+							.huge 156 kWh
+							div Total Consumption!
+				a(href='#')
+					.panel-footer
+						span.pull-left View Details
+						span.pull-right
+							i.fa.fa-arrow-circle-right
+						.clearfix
+		.col-lg-3.col-md-6
+			.panel.panel-red
+				.panel-heading
+					.row
+						.col-xs-3
+							i.fa.fa-power-off.fa-5x
+						.col-xs-9.text-right
+							.huge 68 kWh
+							div Highest consumer: Livingroom!
+				a(href='#')
+					.panel-footer
+						span.pull-left View Details
+						span.pull-right
+							i.fa.fa-arrow-circle-right
+						.clearfix
+		.col-lg-3.col-md-6
+			.panel.panel-green
+				.panel-heading
+					.row
+						.col-xs-3
+							i.fa.fa-link.fa-5x
+						.col-xs-9.text-right
+							.huge 10/12
+							div Connected!
+				a(href='#')
+					.panel-footer
+						span.pull-left View Details
+						span.pull-right
+							i.fa.fa-arrow-circle-right
+						.clearfix
+		.col-lg-3.col-md-6
+			.panel.panel-yellow
+				.panel-heading
+					.row
+						.col-xs-3
+							i.fa.fa-list-alt.fa-5x
+						.col-xs-9.text-right
+							.huge 3
+							div News!
+				a(href='#')
+					.panel-footer
+						span.pull-left View Details
+						span.pull-right
+							i.fa.fa-arrow-circle-right
+						.clearfix
+		// /.row
+		.row
+			.col-lg-8
+				.panel.panel-default
+					.panel-heading
+						i.fa.fa-bar-chart-o.fa-fw
+						|  Latest Total Consumption
+						
+					// /.panel-heading
+					.panel-body
+						#highcharts-basic-column-chart
+					// /.panel-body
+				// /.panel
+			// /.col-lg-8
+			.col-lg-4
+				.panel.panel-default
+					.panel-heading
+						i.fa.fa-bell.fa-fw
+						|  Notifications Panel
+					// /.panel-heading
+					.panel-body
+						.list-group
+							a.list-group-item(href='#')
+								i.fa.fa-play.fa-fw
+								|  Dishwasher on
+								span.pull-right.text-muted.small
+									em 4 minutes ago
+							a.list-group-item(href='#')
+								i.fa.fa-stop.fa-fw
+								|  Heater
+								span.pull-right.text-muted.small
+									em 12 minutes ago
+							a.list-group-item(href='#')
+								i.fa.fa-play.fa-fw
+								|  Heater
+								span.pull-right.text-muted.small
+									em 27 minutes ago
+							a.list-group-item(href='#')
+								i.fa.fa-link.fa-fw
+								|  Plug 7 connected again
+								span.pull-right.text-muted.small
+									em 43 minutes ago
+							a.list-group-item(href='#')
+								i.fa.fa-unlink.fa-fw
+								|  Plug 7 disconnected
+								span.pull-right.text-muted.small
+									em 11:32 AM
+							a.list-group-item(href='#')
+								i.fa.fa-bolt.fa-fw
+								|  Server Crashed!
+								span.pull-right.text-muted.small
+									em 11:13 AM
+							a.list-group-item(href='#')
+								i.fa.fa-warning.fa-fw
+								|  Server Not Responding
+								span.pull-right.text-muted.small
+									em 10:57 AM
+							a.list-group-item(href='#')
+								i.fa.fa-shopping-cart.fa-fw
+								|  New Order Placed
+								span.pull-right.text-muted.small
+									em 9:49 AM
+							a.list-group-item(href='#')
+								i.fa.fa-money.fa-fw
+								|  Payment Received
+								span.pull-right.text-muted.small
+									em Yesterday
+							// /.list-group
+							a.btn.btn-default.btn-block(href='#') View All Alerts
+							
+					// /.panel-body
+				// /.panel
+				.panel.panel-default
+					.panel-heading
+						i.fa.fa-bar-chart-o.fa-fw
+						|  Devices Energy Consumption
+					.panel-body
+						#highcharts-circle-chart
+						a.btn.btn-default.btn-block(href='#') View Details
+							
+block js
+	script(src='/js/highcharts-column.js')
+	script(src='/js/highcharts-circle.js')

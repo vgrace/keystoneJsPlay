@@ -15,6 +15,22 @@ html
 		//- Customise the stylesheet for your site by editing /public/styles/site.sass
 		link(href="/styles/site.css", rel="stylesheet")
 
+		// Bootstrap Core CSS
+		link(href='/bower_components/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
+		// MetisMenu CSS
+		link(href='/bower_components/metisMenu/dist/metisMenu.min.css', rel='stylesheet')
+		// Timeline CSS
+		// <link href="../dist/css/timeline.css" rel="stylesheet">
+		link(href='/styles/sb-admin-2/timeline.css', rel='stylesheet')
+		// Custom CSS
+		// <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+		link(href='/styles/sb-admin-2/sb-admin-2.css', rel='stylesheet')
+		// Morris Charts CSS
+		// <link href="/bower_components/morrisjs/morris.css" rel="stylesheet">
+		link(href='/bower_components/morris.js/morris.css', rel='stylesheet')
+		// Custom Fonts
+		link(href='/bower_components/font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
+
 		//- This file provides the default styling for the KeystoneJS Content Editor
 		if user && user.canAccessKeystone
 			link(href="/keystone/styles/content/editor.min.css", rel="stylesheet")
@@ -35,35 +51,173 @@ html
 	//- HTML BODY
 	body
 
-		//- HEADER
-		#header: .container
-
-			//- Customise your site's navigation by changing the navLinks Array in ./routes/middleware.js
-			//- ... or completely change this header to suit your design.
-
-			div(role="navigation").navbar.navbar-default
-				.container-fluid
-					.navbar-header
-						button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
-							span.sr-only Toggle navigation
-							span.icon-bar
-							span.icon-bar
-							span.icon-bar
-						a.navbar-brand(href='/') KeystonePlay
-					.collapse.navbar-collapse
-						ul.nav.navbar-nav.navbar-left
-							each link in navLinks
-								li(class=(section == link.key ? 'active' : null)): a(href=link.href)= link.label
-						ul.nav.navbar-nav.navbar-right
-							if user
-								if user.canAccessKeystone
-									li: a(href='/keystone') Open Keystone
-								li: a(href='/keystone/signout') Sign Out
-							else
-								li: a(href='/keystone/signin') Sign In
+		#wrapper
+			// Navigation
+			nav.navbar.navbar-default.navbar-static-top(role='navigation', style='margin-bottom: 0')
+				.navbar-header
+					button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+						span.sr-only Toggle navigation
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+					a.navbar-brand(href='index.html') EnergyInBalance
+				// /.navbar-header
+				ul.nav.navbar-top-links.navbar-right
+					// /.dropdown
+					li.dropdown
+						a.dropdown-toggle(data-toggle='dropdown', href='#')
+							i.fa.fa-list-alt.fa-fw
+							i.fa.fa-caret-down
+						ul.dropdown-menu.dropdown-news
+							li
+								a(href='#')
+									div
+										strong Something interesting here
+										span.pull-right.text-muted
+											em Yesterday
+									div
+										| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...
+							li.divider
+							li
+								a(href='#')
+									div
+										strong Have you heard about
+										span.pull-right.text-muted
+											em Yesterday
+									div
+										| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...
+							li.divider
+							li
+								a(href='#')
+									div
+										strong I bet you'll be exited about
+										span.pull-right.text-muted
+											em Yesterday
+									div
+										| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...
+							li.divider
+							li
+								a.text-center(href='#')
+									strong Read All News 
+									i.fa.fa-angle-right
+						// /.dropdown-tasks
+					// /.dropdown
+					li.dropdown
+						a.dropdown-toggle(data-toggle='dropdown', href='#')
+							i.fa.fa-bell.fa-fw
+							i.fa.fa-caret-down
+						ul.dropdown-menu.dropdown-alerts
+							li
+								a(href='#')
+									div
+										i.fa.fa-link.fa-fw
+										|  Plug 7 connected again
+										span.pull-right.text-muted.small 4 minutes ago
+							li.divider
+							li
+								a(href='#')
+									div
+										i.fa.fa-unlink.fa-fw
+										|  Plug 7 disconnected	
+										span.pull-right.text-muted.small 12 minutes ago
+							li.divider
+							li
+								a(href='#')
+									div
+										i.fa.fa-link.fa-fw
+										|  Plug 4 connected again		
+										span.pull-right.text-muted.small 16 minutes ago
+							li.divider
+							li
+								a(href='#')
+									div
+										i.fa.fa-unlink.fa-fw
+										|  Plug 4 disconnected
+										span.pull-right.text-muted.small 18 minutes ago
+							li.divider
+							li
+								a(href='#')
+									div
+										i.fa.fa-upload.fa-fw
+										|  Server Rebooted			
+										span.pull-right.text-muted.small 40 minutes ago
+							li.divider
+							li
+								a.text-center(href='#')
+									strong See All Alerts
+									i.fa.fa-angle-right
+						// /.dropdown-alerts
+					// /.dropdown
+					li.dropdown
+						a.dropdown-toggle(data-toggle='dropdown', href='#')
+							i.fa.fa-user.fa-fw
+							i.fa.fa-caret-down
+						ul.dropdown-menu.dropdown-user
+							li
+								a(href='#')
+									i.fa.fa-user.fa-fw
+									|  User Profile
+							li
+								a(href='/admin')
+									i.fa.fa-lock.fa-fw
+									|  Admin
+							li
+								a(href='#')
+									i.fa.fa-gear.fa-fw
+									|  Settings
+							li.divider
+							li
+								a(href='login.html')
+									i.fa.fa-sign-out.fa-fw
+									|  Logout
+						// /.dropdown-user
+					// /.dropdown
+				// /.navbar-top-links
+				.navbar-default.sidebar(role='navigation')
+					.sidebar-nav.navbar-collapse
+						ul#side-menu.nav
+							li
+								a(href='index.html')
+									i.fa.fa-dashboard.fa-fw
+									|  Dashboard
+							li
+								a(href='#')
+									i.fa.fa-bar-chart-o.fa-fw
+									|  Charts
+									span.fa.arrow
+								ul.nav.nav-second-level
+									li
+										a(href='#') Last Week Chart
+									li
+										a(href='#') Last Month Chart
+								// /.nav-second-level
+							li
+								a(href='tables.html')
+									i.fa.fa-table.fa-fw
+									|  Tables
+									span.fa.arrow
+								ul.nav.nav-second-level
+									li
+										a(href='#') Last Week Table
+									li
+										a(href='#') Last Month Table
+							li
+								a(href='forms.html')
+									i.fa.fa-check-square-o.fa-fw
+									|  Status
+							li
+								a(href='#')
+									i.fa.fa-wrench.fa-fw
+									|  Devices
+									
+							
+					// /.sidebar-collapse
+				// /.navbar-static-side
 
 		//- BODY
-		#body
+		//#body
+		#page-wrapper
+			
 
 			//- NOTE:
 			//- There is no .container wrapping class around body blocks to allow more flexibility in design.
@@ -92,18 +246,33 @@ html
 		//- jQuery 1.11.3 is included by default, and required by both Bootstrap
 		//- and the KeystoneJS Content Editor. If you are not targeting IE8,
 		//- you can upgrade to 2.1.4 (also bundled) for better performance.
-		script(src='/js/jquery/jquery-1.11.3.min.js')
+		//script(src='/js/jquery/jquery-1.11.3.min.js')
 
 		//- Customise which Bootstrap javascript files are served by including
 		//- them specifically here, instead of bootstrap-3.3.5.min.js
-		script(src='/js/bootstrap/bootstrap-3.3.5.min.js')
+		//script(src='/js/bootstrap/bootstrap-3.3.5.min.js')
+				   
+		//- Add scripts that are globally required by your site here.
+		// jQuery
+		script(src='/bower_components/jquery/dist/jquery.min.js')
+		// Bootstrap Core JavaScript
+		script(src='/bower_components/bootstrap/dist/js/bootstrap.min.js')
+		// Metis Menu Plugin JavaScript
+		script(src='/bower_components/metisMenu/dist/metisMenu.min.js')
+		// Raphael JavaScript
+		script(src='/bower_components/raphael/raphael.min.js')
+
+		//Highcharts
+		script(src='/bower_components/highcharts/highcharts.js')
+		script(src='/bower_components/highcharts/highcharts-more.js')
+		script(src='http://code.highcharts.com/modules/exporting.js')
+
+		script(src='/js/sb-admin-2.js')
 
 		//- The KeystoneJS Content Editor provides support for ks-editable data attributes,
 		//- which generate links to edit content for users who can access Keystone
 		if user && user.canAccessKeystone
 			script(src='/keystone/js/content/editor.js')
-
-		//- Add scripts that are globally required by your site here.
 
 		//- Include template-specific javascript files by extending the js block
 		block js
