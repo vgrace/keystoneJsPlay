@@ -57,10 +57,10 @@ block content
 				.panel-heading
 					.row
 						.col-xs-3
-							i.fa.fa-list-alt.fa-5x
+							i.fa.fa-warning.fa-5x
 						.col-xs-9.text-right
-							.huge 3
-							div News!
+							.huge 4
+							div Notifications!
 				a(href='#')
 					.panel-footer
 						span.pull-left View Details
@@ -78,8 +78,121 @@ block content
 					// /.panel-heading
 					.panel-body
 						#highcharts-basic-column-chart
+						a.btn.btn-default.btn-block(href='#') View Details
 					// /.panel-body
 				// /.panel
+				.panel.panel-default
+					.panel-heading
+						i.fa.fa-bar-chart-o.fa-fw
+						|  Livingroom Consumption This week
+						
+					// /.panel-heading
+					.panel-body
+						#highcharts-stacked-bar-chart
+						a.btn.btn-default.btn-block(href='#') View Details
+					// /.panel-body
+				// /.panel
+				
+				.panel.panel-default
+					.panel-heading
+						i.fa.fa-clock-o.fa-fw
+						|  Responsive Timeline
+					// /.panel-heading
+					.panel-body
+						ul.timeline
+							li
+								.timeline-badge
+									i.fa.fa-bar-chart-o
+								.timeline-panel
+									.timeline-heading
+										h4.timeline-title Total today!
+										p
+											small.text-muted
+												i.fa.fa-clock-o
+												|  1 hour ago
+									.timeline-body
+										p
+											| The total energy consumption for your household today from 06:00 to 22:00 was 56 kWh
+										hr
+										button.btn.btn-primary(type='button') More details
+							li.timeline-inverted
+								.timeline-badge.warning
+									i.fa.fa-home
+								.timeline-panel
+									.timeline-heading
+										h4.timeline-title Afternoon
+										p
+											small.text-muted
+												i.fa.fa-clock-o
+												|  5 hours ago
+									.timeline-body
+										p
+											| Your afternoon consumption between 15:00 to 18:00 was 23 kWh
+							li
+								.timeline-badge.danger
+									i.fa.fa-sign-in
+								.timeline-panel
+									.timeline-heading
+										h4.timeline-title Welcome home!
+										p
+											small.text-muted
+												i.fa.fa-clock-o
+												|  8 hours ago
+									.timeline-body
+										p
+											| Since you left this morning your household has consumed 22 kWh
+							li.timeline-inverted
+								.timeline-panel
+									.timeline-heading
+										h4.timeline-title Good job!
+										p
+											small.text-muted
+												i.fa.fa-clock-o
+												|  12 hours ago
+									.timeline-body
+										p
+											| Your houshold consumed 12% less energy during the day, compare to yesterday. Maybe you turned of more appliances before you left?
+							li
+								.timeline-badge.info
+									i.fa.fa-sign-out
+								.timeline-panel
+									.timeline-heading
+										h4.timeline-title Leaving home
+										p
+											small.text-muted
+												i.fa.fa-clock-o
+												|  14 hours ago
+									.timeline-body
+										p
+											| When you left your home this morning your consumption went from 12 kWh to 4 kWh
+										
+							li
+								.timeline-panel
+									.timeline-heading
+										h4.timeline-title Congratulations!
+										p
+											small.text-muted
+												i.fa.fa-clock-o
+												|  14 hours ago
+									.timeline-body
+										p
+											| This morning consumed 15% less energy than yesterday!
+							li.timeline-inverted
+								.timeline-badge.success
+									i.fa.fa-coffee
+								.timeline-panel
+									.timeline-heading
+										h4.timeline-title Good morning!
+										p
+											small.text-muted
+												i.fa.fa-clock-o
+												|  16 hours ago
+									.timeline-body
+										p
+											| This morning between 06:00 and 08:00 you consumed 12 kWh mainly hot water and kitchen. 
+					// /.panel-body
+				// /.panel
+
 			// /.col-lg-8
 			.col-lg-4
 				.panel.panel-default
@@ -150,3 +263,4 @@ block content
 block js
 	script(src='/js/highcharts-column.js')
 	script(src='/js/highcharts-circle.js')
+	script(src='/js/highcharts-stacked-bar.js')

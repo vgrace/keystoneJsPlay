@@ -229,6 +229,9 @@ table.dataTable thead .sorting:after {
 .show-grid {
   margin: 15px 0; }
 
+.big {
+  font-size: 30px; }
+
 .huge {
   font-size: 40px; }
 
