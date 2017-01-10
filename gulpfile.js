@@ -4,6 +4,8 @@ var shell = require('gulp-shell')
 
 var sass = require('gulp-sass');
 
+nodemon = require('gulp-nodemon'); 
+var jshint = require('gulp-jshint');
 
 var paths = {
 	'src':['./models/**/*.js','./routes/**/*.js', 'keystone.js', 'package.json']
@@ -16,6 +18,12 @@ var paths = {
 
 };
 
+// JS hint task
+gulp.task('jshint', function () {
+    gulp.src('./src/scripts/*.js')
+      .pipe(jshint())
+      .pipe(jshint.reporter('default'));
+});
 
 gulp.task('watch:sass', function () {
 	gulp.watch(paths.style.all, ['sass']);
@@ -36,3 +44,27 @@ gulp.task('watch', [
 ]);
 
 gulp.task('default', ['watch', 'runKeystone']);
+
+// Basic usage
+gulp.task('lint', function () {
+    gulp.src('./**/*.js')
+      .pipe(jshint())
+})
+
+gulp.task('develop', function () {
+    var stream = nodemon({
+        script: 'keystone.js'
+            , ext: 'html js'
+            , ignore: ['ignored.js']
+            , tasks: ['lint']
+    })
+
+    stream
+        .on('restart', function () {
+            console.log('restarted!')
+        })
+        .on('crash', function () {
+            console.error('Application has crashed!\n')
+            stream.emit('restart', 10)  // restart the server in 10 seconds 
+        })
+})

@@ -14,6 +14,7 @@ exports = module.exports = function (req, res) {
 	locals.data = {
 		posts: [],
 		categories: [],
+	    latestposts: []
 	};
 
 	// Load all categories
@@ -77,6 +78,23 @@ exports = module.exports = function (req, res) {
 			next(err);
 		});
 	});
+
+    //// Get three latest news posts
+	//view.on('init', function (next) {
+	//    var Post = keystone.list('Post');
+
+
+	//    Post.model.find()
+    //    .where('state', 'published')
+    //    .populate('author')
+    //    .sort('-publishedAt')
+    //    .limit(3)
+    //    .exec(function (err, posts) {
+    //        // do something with posts
+    //        locals.data.latestposts = posts;
+    //        next(err);
+    //    });
+	//});
 
 	// Render the view
 	view.render('blog');

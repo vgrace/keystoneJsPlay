@@ -1,5 +1,10 @@
 extends ../layouts/default
 
+mixin postcategories(cat)
+	li
+		a(href='/blog/' + cat.key)
+			=cat.name
+	
 mixin post(post)
 	.post(data-ks-editable=editable(user, { list: 'Post', id: post.id }))
 		h2: a(href='/blog/post/' + post.slug)= post.title
@@ -22,9 +27,19 @@ mixin post(post)
 		if post.content.extended
 			p.read-more: a(href='/blog/post/' + post.slug) Read more...
 
+//-block sidenav
+	.navbar-default.sidebar(role='navigation')
+		.sidebar-nav.navbar-collapse
+			ul#side-menu.nav
+				li
+					a(href='/blog/#', class=!data.category ? 'active' : false)
+						| All Categories
+				each cat in data.categories
+					+postcategories(cat)
+
 block intro
 	.container
-		h1= data.category ? data.category.name : 'Blog'
+		h1= data.category ? data.category.name : 'News'
 
 block content
 	.container: .row

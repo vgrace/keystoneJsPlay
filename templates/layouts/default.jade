@@ -17,6 +17,9 @@ html
 
 		// Bootstrap Core CSS
 		link(href='/bower_components/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
+		//link(href='/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css', rel='stylesheet')
+		link(href='/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css', rel='stylesheet')
+
 		// MetisMenu CSS
 		link(href='/bower_components/metisMenu/dist/metisMenu.min.css', rel='stylesheet')
 		// Timeline CSS
@@ -50,8 +53,23 @@ html
 
 	//- HTML BODY
 	body
+		- var numberofposts = latestposts.length
+		mixin latestpost(post)
+			-  function shorten(s) { console.log(typeof doc); return s.length > 100 ? s.substr(0, s.lastIndexOf(' ', 157))  + '...' : s; };
+			- var shorttext = shorten(post.content.brief)
+			li
+				a(href='/blog/post/' + post.slug)
+					div
+						strong= post.title
+						span.pull-right.text-muted
+							if post.publishedDate
+								em
+								| on #{post._.publishedDate.format('MMMM Do, YYYY')} 
+					div!=	shorttext
+			li.divider
 
 		#wrapper
+			
 			// Navigation
 			nav.navbar.navbar-default.navbar-static-top(role='navigation', style='margin-bottom: 0')
 				.navbar-header
@@ -60,42 +78,17 @@ html
 						span.icon-bar
 						span.icon-bar
 						span.icon-bar
-					a.navbar-brand(href='index.html') EnergyInBalance
+					a.navbar-brand(href='/') EnergyInBalance
 				// /.navbar-header
 				ul.nav.navbar-top-links.navbar-right
 					// /.dropdown
 					li.dropdown
 						a.dropdown-toggle(data-toggle='dropdown', href='#')
 							| News 
-							span.badge 3
+							span.badge= numberofposts
 						ul.dropdown-menu.dropdown-news
-							li
-								a(href='#')
-									div
-										strong Something interesting here
-										span.pull-right.text-muted
-											em Yesterday
-									div
-										| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...
-							li.divider
-							li
-								a(href='#')
-									div
-										strong Have you heard about
-										span.pull-right.text-muted
-											em Yesterday
-									div
-										| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...
-							li.divider
-							li
-								a(href='#')
-									div
-										strong I bet you'll be exited about
-										span.pull-right.text-muted
-											em Yesterday
-									div
-										| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...
-							li.divider
+							each post in latestposts
+								+latestpost(post)
 							li
 								a.text-center(href='/blog')
 									strong Read All News 
@@ -169,49 +162,51 @@ html
 								a(href='login.html')
 									i.fa.fa-sign-out.fa-fw
 									|  Logout
-						// /.dropdown-user
-					// /.dropdown
-				// /.navbar-top-links
-				.navbar-default.sidebar(role='navigation')
-					.sidebar-nav.navbar-collapse
-						ul#side-menu.nav
-							li
-								a(href='/')
-									i.fa.fa-dashboard.fa-fw
-									|  Dashboard
-							li
-								a(href='#')
-									i.fa.fa-bar-chart-o.fa-fw
-									|  Charts
-									span.fa.arrow
-								ul.nav.nav-second-level
-									li
-										a(href='#') Last Week Chart
-									li
-										a(href='#') Last Month Chart
-								// /.nav-second-level
-							li
-								a(href='tables.html')
-									i.fa.fa-table.fa-fw
-									|  Tables
-									span.fa.arrow
-								ul.nav.nav-second-level
-									li
-										a(href='#') Last Week Table
-									li
-										a(href='#') Last Month Table
-							li
-								a(href='forms.html')
-									i.fa.fa-check-square-o.fa-fw
-									|  Status
-							li
-								a(href='#')
-									i.fa.fa-wrench.fa-fw
-									|  Devices
-									
-							
-					// /.sidebar-collapse
-				// /.navbar-static-side
+						
+			.navbar-default.sidebar(role='navigation')
+				.sidebar-nav.navbar-collapse
+					ul#side-menu.nav
+						li
+							a(href='/#')
+								i.fa.fa-dashboard.fa-fw
+								|  Dashboard
+						li
+							a(href='#c')
+								i.fa.fa-bar-chart-o.fa-fw
+								|  Charts
+								span.fa.arrow
+							ul.nav.nav-second-level
+								li
+									a(href='/charthourly') Hourly
+								li
+									a(href='#cd') Daily
+								li
+									a(href='#cm') Monthly
+								li
+									a(href='#cy') Yearly
+							// /.nav-second-level
+						li
+							a(href='#t')
+								i.fa.fa-table.fa-fw
+								|  Tables
+								span.fa.arrow
+							ul.nav.nav-second-level
+								li
+									a(href='#th') Hourly
+								li
+									a(href='#td') Daily
+								li
+									a(href='#tm') Monthly
+								li
+									a(href='#ty') Yearly
+						li
+							a(href='#s')
+								i.fa.fa-check-square-o.fa-fw
+								|  Status
+						li
+							a(href='#d')
+								i.fa.fa-wrench.fa-fw
+								|  Devices
 
 		//- BODY
 		//#body
@@ -256,6 +251,9 @@ html
 		script(src='/bower_components/jquery/dist/jquery.min.js')
 		// Bootstrap Core JavaScript
 		script(src='/bower_components/bootstrap/dist/js/bootstrap.min.js')
+		// Bootstrap datepicker
+		script(src='/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')
+
 		// Metis Menu Plugin JavaScript
 		script(src='/bower_components/metisMenu/dist/metisMenu.min.js')
 		// Raphael JavaScript
